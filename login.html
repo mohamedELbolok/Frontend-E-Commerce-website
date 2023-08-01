@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Login Page</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital@1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <section class="loginpage" style="margin-top: -20px;">
+        <h1 style="padding-top: 15px;color: cornsilk;">EVHere</h1>
+        <div class="formlogin">
+            <form action="./Home.html" id="signForm">
+                <div>
+                    <h1 style="font-size: 30px;font-weight: bold;">sign in</h1>
+                    <i style="font-size: 35px;" class="fa-solid fa-users"></i>
+                </div>
+
+                <div style="margin-top: 25px ;">
+                    <input id="email" class="email" type="email" placeholder="Username" required
+                        style="width: 250px;height: 25px;">
+                    <i class="fa-solid fa-user" style="margin-left: -22px;"></i>
+                </div>
+                <div style="margin-top: 25px ;">
+                    <input id="password" type="password" placeholder=" Your password" required
+                        style="width: 250px;height: 25px;">
+                    <i id="showPassword" class="fa-solid fa-lock" style="margin-left: -22px;"></i>
+                </div>
+                <div>
+                    <input type="checkbox" id="check"><label for="check">Remember Me</label> <!--for cookies-->
+                </div>
+
+                <div style="width: 250px;padding-left: 20%;color: rgb(71, 16, 199);margin-top: -5px;">
+                    <h5>By signing in, you agree to EVHere's Conditions of Use and Privacy Notice.</h5>
+                </div>
+                <div>
+                    <span class="error" id="wrong_data">Sign-in failed. Invalid email or password.</span>
+                    <input type="submit" value="Login"
+                        style="background-color: mediumblue; width: 100px;height: 40px;border-radius: 30%;">
+                </div>
+            </form>
+            <div>
+                <p>----------<span style="font-size: 25px;color: rgb(255, 251, 3);">new in EVHere?</span>----------
+                </p>
+                <a href="./signuppage.html"> <button
+                        style="background-color: rgb(218, 233, 7);width: 200px;height: 30px;border-radius: 25px;">Create
+                        Your EVHere Account</button> </a>
+            </div>
+        </div>
+    </section>
+
+
+
+    <footer id="footer">
+
+        <div style="display: flex;justify-content: center; text-align: center;">
+            <a href="https://www.facebook.com/" target="_blank"> <i class="fa-brands fa-facebook"></i> </a>
+            <a href="https://twitter.com/login" target="_blank"> <i class="fa-brands fa-twitter"></i> </a>
+            <a href="https://www.instagram.com/" target="_blank"> <i class="fa-brands fa-square-instagram"></i> </a>
+            <a href="https://www.linkedin.com/" target="_blank"> <i class="fa-brands fa-linkedin"></i> </a>
+        </div>
+
+        <hr>
+        <p class="lastLine">© Copyright student ITI 2023. All rights reserved.</p>
+    </footer>
+
+
+    <script>
+        document.getElementById("signForm").addEventListener("submit", function (event) {
+            const email1 = document.getElementById('email').value
+            const password1 = document.getElementById("password").value
+            const save_cookie = document.getElementById("check").checked
+            // console.log(save_cookie);
+            // console.log(email1);
+            // console.log(password1);
+            if (save_cookie) {
+                localStorage.setItem("email", email1);
+                localStorage.setItem("password", password1);
+            }
+        })
+
+
+        const passwordInput = document.getElementById("password")
+        const showpass = document.getElementById('showPassword')
+        document.getElementById("showPassword").addEventListener('click', function () {
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+            } else {
+                passwordInput.type = 'password';
+            }
+        })
+
+
+
+        ////////////////////////
+        function handleSignIn(event) {
+            event.preventDefault()
+
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+
+            // API endpoint URL
+            var apiUrl = "https://dummyjson.com/users"
+
+            // Fetch the user data from the API
+            fetch(apiUrl)
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (data) {
+                    var users = Array.isArray(data) ? data : (data.users || []);
+
+                    // Check if the entered email and password match any user in the user data
+                    var validuser = users.find(function (user) {
+                        return user.email === email && user.password === password;
+                    });
+
+                    if (validuser) {
+                        window.location.href = "./Home.html";
+                    } else {
+
+                        const passwordError = document.getElementById('wrong_data');
+                        passwordError.style.display = 'block';
+                    }
+                })
+                .catch(function (error) {
+                    // Handle any errors
+                    alert("An error occurred while signing in. Please try again later.");
+                    console.error(error);
+                });
+        }
+
+        // Attach event listener to the sign-in form
+        document.getElementById("signForm").addEventListener("submit", handleSignIn);
+    </script>
+</body>
+
+</html>
+
+
+<!-- we not reqular expression on email because it different emails and dont have the same shape  -->

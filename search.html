@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>EVHere </title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital@1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .search {
+            height: 45px;
+            border-radius: 22px;
+            font-size: 25px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .btn {
+            height: 35px;
+            background-color: #45a2ff;
+            font-size: 18px;
+            font-weight: bold;
+            color: black;
+            border-radius: 29%;
+        }
+
+        .btn:hover {
+            background-color: rgb(101, 101, 250);
+        }
+
+        .productstyle {
+            background-color: #45a2ff;
+            color: azure;
+            padding: 50px;
+        }
+
+        .containe {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            overflow: auto;
+            flex-wrap: wrap;
+            min-height: 400px;
+
+        }
+
+        .card {
+            position: relative;
+            width: 284px;
+            height: 450px;
+            margin: 10px;
+            background-color: black;
+            border-radius: 57px;
+            overflow: hidden;
+        }
+
+
+        .card::before {
+            content: "";
+            position: absolute;
+            top: -39%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #1000ff;
+            transform: skewY(310deg);
+            transition: .8s;
+        }
+
+        .card:hover::before {
+            top: -50%;
+            transform: skewY(400deg);
+        }
+
+        .card::after {
+            content: "EVHere";
+            position: absolute;
+            bottom: -1px;
+            left: 32px;
+            font-weight: 800;
+            font-size: 4em;
+            color: rgba(83, 60, 15, 0.13);
+            transition: 1.2s;
+        }
+
+        .card:hover::after {
+            color: rgba(19, 100, 167, 0.6);
+        }
+
+        .card .imgBox {
+            position: relative;
+            width: 90%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-left: 13px;
+            padding-top: 20px;
+            z-index: 1;
+        }
+
+        .card .imgBox img {
+            max-width: 100%;
+            transition: .5s;
+            border-radius: 25px;
+        }
+
+        .card:hover .imgBox img {
+            max-width: 60%;
+            max-height: 180px;
+        }
+
+        .card .contentBox {
+            position: relative;
+            padding: 3px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 2;
+        }
+
+        .card .contentBox h3 {
+            font-size: 18px;
+            color: rgb(220, 224, 245);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .card .contentBox .price {
+            font-size: 24px;
+            color: beige;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-top: -8px;
+        }
+
+        .card .contentBox .buy {
+            position: relative;
+            top: 100px;
+            opacity: 0;
+            padding: 10px 30px;
+            margin-top: 28px;
+            color: black;
+            text-decoration: none;
+            background: #1000ff;
+            border-radius: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: .5s;
+        }
+
+        .card:hover .contentBox .buy {
+            top: 0;
+            opacity: 1;
+        }
+
+        .mouse {
+            height: 300px;
+            width: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header">
+        <div class="firstLine">welcome to our website</div>
+        <div class="firstLine">all products have discount</div>
+        <div class="firstLine">Free shipping on orders . Free returns.</div>
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+
+    <div id="nav">
+        <span style="font-size: 55px;font-weight: bold;float: left;padding-left: 10px;">EVHere</span>
+
+
+        <ul>
+            <li><a href="Home.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="#footer">About Us</a></li>
+        </ul>
+
+        <span style="float: right;position: relative; top: 30%;">
+
+            <a href="login.html" title="Login"><i class="fa-solid fa-user"></i></a>
+            <a href="Questions.html" title="Questions"><i class="fa-solid fa-circle-question"></i></a>
+            <a href="./Cart.html" title="YOUR CART"><i class="fa-solid fa-cart-shopping"><span id="cart"
+                        style="background-color: blue;border-radius:10%;color: white;padding:0 5px;font-size: smaller;"></span></i></a>
+        </span>
+    </div>
+
+    <section class="productstyle">
+        <div style="margin-bottom: 51px;margin-top: -42px;"><input class="search" name="input1" type="text" id="input"
+                placeholder="category you want">
+            <div>
+
+                <button class="btn" onclick="getProductByName()">get
+                    products</button>
+            </div>
+        </div>
+
+        <div class="containe">
+        </div>
+
+    </section>
+
+
+    <footer id="footer">
+        <p id="title">EVHere</p>
+        <div>
+
+            <h1 class="col1">CUSTOMER SERVICE
+
+                <a href="">Support Portal</a>
+                <a href="">Instructions</a>
+                <a href="">FAQ</a>
+            </h1>
+
+            <h1 class="col2">COMPANY
+                <a href="">Our Story</a>
+                <a href="">Terms & Conditions</a>
+                <a href="">Privacy Policy</a>
+            </h1>
+
+            <h1 class="col3">CONTACT US
+                <br>
+                <p> <i class="fa-solid fa-phone" style="font-size: 25px;"></i> 01154766223</p>
+                <p><i class="fa-solid fa-envelope"></i> userexperience@yahoo.com </p>
+            </h1>
+
+        </div>
+
+        <div style="display: flex;justify-content: center; text-align: center;">
+            <a href="https://www.facebook.com/" target="_blank"> <i class="fa-brands fa-facebook"></i> </a>
+            <a href="https://twitter.com/login" target="_blank"> <i class="fa-brands fa-twitter"></i> </a>
+            <a href="https://www.instagram.com/" target="_blank"> <i class="fa-brands fa-square-instagram"></i> </a>
+            <a href="https://www.linkedin.com/" target="_blank"> <i class="fa-brands fa-linkedin"></i> </a>
+        </div>
+
+        <hr>
+        <p class="lastLine">© Copyright student ITI 2023. All rights reserved.</p>
+    </footer>
+
+
+
+    <script>
+
+        //first line in website
+        let slideIndex = 1;
+
+
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            let i;
+            let slides = document.getElementsByClassName("firstLine");
+            if (n > slides.length) { slideIndex = 1 }
+            if (n < 1) { slideIndex = slides.length }
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slides[slideIndex - 1].style.display = "block"   // why say error and he work good 
+        }
+        showSlides(slideIndex)
+        //////////////////////////////////
+
+
+        /////////////////// getProductByName /////////////////////////
+
+        function getProductByName() {
+            var name = document.getElementById("input").value
+            var cont = document.getElementsByClassName('containe')[0]
+
+
+            var xhr1 = new XMLHttpRequest()
+            xhr1.open("get", 'https://dummyjson.com/products/category/' + name.toLowerCase())
+            xhr1.send()
+            xhr1.addEventListener("readystatechange", function () {
+                if (xhr1.readyState == 4 && xhr1.status == 200) {
+                    // if i want just one item each time
+                    var res = JSON.parse(xhr1.response)
+                    cont.innerHTML = ''
+                    for (i = 0; i < res.limit; i++) {
+                        temp = document.createElement("div")
+                        temp.className = 'results'
+                        temp.innerHTML = '<div class="card">' +
+                            '<div class="imgBox">' +
+                            '<img src="' + res["products"][i]["thumbnail"] + '"alt="mouse corsair" class="mouse">'
+                            + '</div>' +
+                            '<div class="contentBox">' +
+                            '<h3>' + res["products"][i]["title"] + '</h3>' +
+                            '<h2 class="price">' + res["products"][i]["price"] + '.<small> ' + res["products"][i]["id"] + '</small> $ </h2>'
+                            + '<button onclick="addToCart(' + res["products"][i]["id"] + ')" class="buy">Add To Cart</button>' +
+                            '</div>'
+                        cont.appendChild(temp)
+                    }
+                }
+            })
+
+
+        }
+        let arr = []
+        function addToCart(id) {
+            arr.push(id)
+            localStorage.setItem('userCart', JSON.stringify(arr))
+            let items = JSON.parse(localStorage.getItem('userCart'))
+            document.getElementById('cart').textContent = items.length
+        }
+    </script>
+</body>
+
+</html>
+
+
+
+
+<!-- category in this website -->
+
+<!-- 1- smartphones
+2- laptops
+3- fragrances
+4- skincare
+6-groceries
+7-home-decoration -->

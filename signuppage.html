@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Signup Page</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital@1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <section class="loginpage" style="margin-top: -20px;">
+        <h1 style="padding-top: 15px;color: cornsilk;">EVHere</h1>
+        <div class="formlogin">
+            <form action="./login.html" id="userForm">
+                <div>
+                    <h1 style="font-size: 30px;font-weight: bold;">Create account</h1>
+                </div>
+
+                <div style="margin-top: 20px ;">
+                    <input type="text" id="fname" name="fname" placeholder="FIRST NAME" required
+                        style="width: 250px;height: 20px;">
+                </div>
+
+                <div style="margin-top: 20px ;">
+                    <input type="text" id="lname" name="lname" placeholder="LAST NAME" required
+                        style="width: 250px;height: 20px;">
+                </div>
+
+                <div style="margin-top: 20px ;">
+                    <input id="email" type="email" name="email" placeholder="Username" required
+                        style="width: 250px;height: 20px;">
+                    <i class="fa-solid fa-user" style="margin-left: -22px;"></i>
+                    <br>
+                    <span class="error" id="email-error">email-error</span>
+                </div>
+
+
+                <div style="margin-top: 20px ;">
+                    <input id="pass" type="password" name="password" placeholder=" Your password" required
+                        style="width: 250px;height: 20px;">
+                    <i id="showPassword" class="fa-solid fa-lock" style="margin-left: -22px;"></i>
+                </div>
+
+                <div style="margin-top: 20px ;">
+                    <input onmouseleave="ckeckpass()" id="REPEATpass" type="password" name="REPEATpassword"
+                        placeholder="Repeat Your password" required style="width: 250px;height: 20px;">
+                    <br>
+                    <span class="error" id="passError">the Repeat password should be the same password</span>
+                </div>
+
+                <div style="width: 250px;padding-left: 20%;color: rgb(71, 16, 199);margin-top: -5px;">
+                    <h5>By signing in, you agree to EVHere's Conditions of Use and Privacy Notice.</h5>
+                </div>
+                <div>
+                    <input type="submit" value="Sign UP"
+                        style="background-color: mediumblue; width: 100px;height: 40px;border-radius: 30%;">
+                </div>
+            </form>
+            <a href="./login.html"> <button
+                    style="background-color: mediumblue; width: 100px;height: 40px;border-radius: 30%;">Continue</button>
+            </a>
+        </div>
+    </section>
+
+
+
+    <footer id="footer">
+
+        <div style="display: flex;justify-content: center; text-align: center;">
+            <a href="https://www.facebook.com/" target="_blank"> <i class="fa-brands fa-facebook"></i> </a>
+            <a href="https://twitter.com/login" target="_blank"> <i class="fa-brands fa-twitter"></i> </a>
+            <a href="https://www.instagram.com/" target="_blank"> <i class="fa-brands fa-square-instagram"></i> </a>
+            <a href="https://www.linkedin.com/" target="_blank"> <i class="fa-brands fa-linkedin"></i> </a>
+        </div>
+
+        <hr>
+        <p class="lastLine">© Copyright student ITI 2023. All rights reserved.</p>
+    </footer>
+
+
+    <script>
+        const emailInput = document.getElementById('email');
+        const emailError = document.getElementById('email-error');
+
+        emailInput.addEventListener('blur', function () {
+            if (!/^[a-zA-Z]+[a-zA-Z0-9._-]*@[yahoo|gmail]+\.(com)$/.test(emailInput.value)) {
+                emailError.style.display = 'inline';
+                emailInput.classList.add('wronginput');
+            } else {
+                emailError.style.display = 'none';
+                emailInput.classList.remove('wronginput');
+            }
+        });
+
+
+        const showpass = document.getElementById('showPassword');
+        const passwordInput = document.getElementById("pass")
+        const repeatPasswordInput = document.getElementById('REPEATpass');
+        const passwordError = document.getElementById('passError');
+
+        function ckeckpass() {
+            if (repeatPasswordInput.value !== passwordInput.value) {
+                passwordError.style.display = 'inline';
+                return true
+
+            } else {
+                passwordError.style.display = 'none';
+                passwordInput.classList.remove('wronginput');
+                repeatPasswordInput.classList.remove('wronginput');
+            }
+        }
+
+
+        document.getElementById("showPassword").addEventListener('click', function () {
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+            } else {
+                passwordInput.type = 'password';
+            }
+        })
+
+        document.getElementById("userForm").addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Get user input values
+            var fname = document.getElementById("fname").value;
+            var lname = document.getElementById("lname").value;
+            var pass = document.getElementById("pass").value;
+            var email = document.getElementById("email").value;
+
+            // Create FormData object and append form data
+            var formData = new FormData();
+            formData.append("firstName", fname);
+            formData.append("lastName", lname);
+            formData.append("password", pass);
+            formData.append("email", email);
+
+            // Send the form data using the POST method
+            fetch("https://dummyjson.com/users/add", {
+                method: "POST",
+                body: formData
+            })
+                .then(function (response) {
+                    if (response.ok) {
+                        return response.json();
+                        alert("sucesssful sign up")
+                    } else {
+                        alert("cant sign up plz try again ")
+                    }
+                })
+                .then(function (data) {
+                    console.log("Response:", data);
+                    Swal.fire({
+                        title: 'congratulations, now you are one of EVHere customers',
+                        width: 600,
+                        padding: '3em',
+                        color: '#716add',
+                        background: '#fff url(/images/trees.png)',
+                        backdrop: `rgba(0,0,123,0.4) url("./images/party.gif") left top no-repeat `
+                    })
+                    // Perform any additional actions after receiving the response
+                })
+                .catch(function (error) {
+                    console.error("An error occurred while posting form data:", error);
+                    alert("error")
+
+                });
+
+            // Clear the form fields
+            document.getElementById("fname").value = "";
+            document.getElementById("lname").value = "";
+            document.getElementById("email").value = "";
+            document.getElementById("pass").value = "";
+            document.getElementById("REPEATpass").value = "";
+        })
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+
+</html>
+
+
+<!-- Adding a new user will not add it into the server.
+It will simulate a POST request and will return the new created user with a new id -->

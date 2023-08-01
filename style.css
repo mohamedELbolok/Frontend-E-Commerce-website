@@ -1,0 +1,352 @@
+body {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-family: 'Merriweather', serif;
+    min-height: fit-content;
+}
+
+
+#header {
+    background-color: black;
+    color: bisque;
+    width: 100%;
+    text-align: center;
+}
+
+.firstLine {
+    display: none;
+    padding-top: 2px;
+}
+
+.prev,
+.next {
+    cursor: pointer;
+    top: -16px;
+    padding: 16px;
+    color: rgb(243, 1, 1);
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    height: 9px;
+}
+
+
+.next {
+    position: absolute;
+    right: 0;
+}
+
+.prev {
+    position: absolute;
+    left: 0;
+}
+
+.prev:hover,
+.next:hover {
+    background-color: rgba(255, 217, 0, 0.8);
+}
+
+#nav {
+    background-color: rgb(255, 255, 255);
+    border: rgb(0, 0, 255) 2px solid;
+    position: sticky;
+    top: 0px;
+    overflow: hidden;
+    z-index: 1000;
+}
+
+#nav>ul {
+    display: inline-block;
+}
+
+#nav>ul>li {
+    list-style: none;
+    display: inline-block;
+}
+
+#nav>ul>li>a {
+    text-decoration: none;
+    font-size: 24px;
+    padding: 20px 60px;
+    height: fit-content;
+}
+
+#nav>span>a>i {
+    font-size: 25px;
+    padding: 20px 40px;
+}
+
+span>a>i:hover,
+#nav>ul>li>a:hover {
+    background-color: blue;
+    color: bisque;
+    border-radius: 45%;
+}
+
+span>a>i::-webkit-keygen-select,
+#nav>ul>li>a::-webkit-keygen-select {
+    background-color: aqua;
+}
+
+.slideshow-container {
+    margin-top: -5px;
+    background-image: url(./images/asd.png);
+    background-size: cover;
+}
+
+.slideshow-container img {
+    width: 80%;
+    height: 700px;
+}
+
+#footer {
+    background-image: url(./images/footer-background1.png);
+    background-size: cover;
+    text-align: left;
+    margin-top: -4px;
+    overflow: hidden;
+}
+
+#footer>div {
+    display: flex;
+    justify-content: space-between
+}
+
+
+#footer>div>h1 {
+    display: inline-block;
+    padding-left: 50px;
+    padding-right: 10px;
+}
+
+
+
+#footer>div>h1>a {
+    display: block;
+    text-decoration: none;
+    color: black;
+    padding: 23px 0px 0px 0px;
+    font-size: 20px;
+}
+
+#footer>p#title {
+    padding-left: 10px;
+    font-size: 49px;
+}
+
+div>a>i {
+    padding: 20px;
+    font-size: 30px;
+    color: rgb(65 127 181);
+}
+
+.lastLine {
+    height: 20px;
+    padding: 10px;
+    float: right;
+    color: beige;
+}
+
+.loginpage {
+    text-align: center;
+    width: 100%;
+    height: 628px;
+    background-image: url(./images/backgroundlogin.png);
+    background-size: cover;
+}
+
+.loginpage>.formlogin {
+    width: 400px;
+    height: 483px;
+    border: 2px solid #80bbb2;
+    margin-top: 15px;
+    margin: auto;
+}
+
+
+/* products page css */
+
+.productstyle {
+    background-color: #45a2ff;
+    color: azure;
+    padding: 50px;
+}
+
+.container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    overflow: auto;
+    flex-wrap: wrap;
+}
+
+.card {
+    position: relative;
+    width: 284px;
+    height: 450px;
+    margin: 10px;
+    background-color: black;
+    border-radius: 57px;
+    overflow: hidden;
+}
+
+
+.card::before {
+    content: "";
+    position: absolute;
+    top: -39%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #1000ff;
+    transform: skewY(310deg);
+    transition: .8s;
+}
+
+.card:hover::before {
+    top: -50%;
+    transform: skewY(400deg);
+}
+
+.card::after {
+    content: "EVHere";
+    position: absolute;
+    bottom: -1px;
+    left: 32px;
+    font-weight: 800;
+    font-size: 4em;
+    color: rgba(83, 60, 15, 0.13);
+    transition: 1.2s;
+}
+
+.card:hover::after {
+    color: rgba(19, 100, 167, 0.6);
+}
+
+.card .imgBox {
+    position: relative;
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 13px;
+    padding-top: 20px;
+    z-index: 1;
+}
+
+.card .imgBox img {
+    max-width: 100%;
+    transition: .5s;
+    border-radius: 25px;
+}
+
+.card:hover .imgBox img {
+    max-width: 60%;
+    max-height: 180px;
+}
+
+.card .contentBox {
+    position: relative;
+    padding: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 2;
+}
+
+.card .contentBox h3 {
+    font-size: 18px;
+    color: rgb(220, 224, 245);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.card .contentBox .price {
+    font-size: 24px;
+    color: beige;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-top: -8px;
+}
+
+.card .contentBox .buy {
+    position: relative;
+    top: 100px;
+    opacity: 0;
+    padding: 10px 30px;
+    margin-top: 28px;
+    color: black;
+    text-decoration: none;
+    background: #1000ff;
+    border-radius: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: .5s;
+}
+
+.card:hover .contentBox .buy {
+    top: 0;
+    opacity: 1;
+}
+
+.mouse {
+    height: 300px;
+    width: auto;
+}
+
+
+/*Questions page */
+
+.questionspage {
+    width: 100%;
+    height: 400px;
+    margin-top: -37px;
+    background-color: #80bbb2;
+    text-align: center;
+}
+
+.questionspage>h1 {
+    padding-top: 60px;
+    font-size: 45px;
+}
+
+.questionspage>p {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+
+/* ///////////// */
+
+.error {
+    color: red;
+    display: none;
+    font-size: 16px;
+    border: 2px solid #567483;
+}
+
+.wronginput {
+    background-color: rgb(255, 0, 0);
+}
+
+
+table {
+    background-color: rgb(255, 255, 255);
+    margin: auto;
+    min-height: 20vh;
+    width: 80%;
+    color: #000000;
+    border-radius: 102px;
+}
+
+table,
+th,
+td {
+    border: 1px solid;
+    border-radius: 106px;
+    border-color: #1000ff;
+}
